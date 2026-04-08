@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="UrlShortener.Client/urlshortener.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="UrlShortener.Tests/UrlShortener.Tests.csproj">
+    <BuildDependency Project="UrlShortener.Client/urlshortener.client.esproj" />
+  </Project>
+  <Project Path="UrlShortenerService/UrlShortenerService.csproj" />
+</Solution>
