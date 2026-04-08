@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: url-shortener-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=YourStrongPassword123!
+      - POSTGRES_DB=UrlShortenerDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  backend:
+    build: 
+      context: ./UrlShortenerService
+      dockerfile: Dockerfile
+    container_name: url-shortener-api
+    ports:
+      - "7070:8080"
+    environment:
+      - DB_CONNECTION_STRING=Host=db;Database=UrlShortenerDb;Username=admin;Password=YourStrongPassword123!;Include Error Detail=true
+    depends_on:
+      - db
+
+  frontend:
+    build: 
+      context: ./urlshortener.client
+      dockerfile: Dockerfile
+    container_name: url-shortener-web
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

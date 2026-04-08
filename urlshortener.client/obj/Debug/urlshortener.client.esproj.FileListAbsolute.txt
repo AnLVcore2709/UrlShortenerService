@@ -1,0 +1,1 @@
+C:\Learn\AMD201 - tester\UrlShortenerService\UrlShortener.Client\obj\Debug\urlshortener.client.esproj.CoreCompileInputs.cache
