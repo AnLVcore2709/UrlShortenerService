@@ -100,7 +100,7 @@
               "RelativeDocumentMoniker": "urlshortener.client\\.env",
               "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\.env",
               "RelativeToolTip": "urlshortener.client\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-04-10T09:12:25.598Z",
               "EditorCaption": ""
@@ -113,7 +113,7 @@
               "RelativeDocumentMoniker": "urlshortener.client\\src\\App.jsx",
               "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\src\\App.jsx",
               "RelativeToolTip": "urlshortener.client\\src\\App.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2026-04-08T03:49:47.639Z",
               "EditorCaption": ""
@@ -128,8 +128,7 @@
               "RelativeToolTip": "docker-compose.yml",
               "ViewState": "AgIAAAMAAAAAAAAAAAAkwCoAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2026-04-08T03:50:17.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:50:17.753Z"
             },
             {
               "$type": "Document",
@@ -141,8 +140,7 @@
               "RelativeToolTip": "ci.yml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2026-04-09T16:36:19.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-09T16:36:19.41Z"
             },
             {
               "$type": "Document",
@@ -154,8 +152,7 @@
               "RelativeToolTip": "cd.yml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2026-04-09T16:37:24.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-09T16:37:24.707Z"
             },
             {
               "$type": "Document",
@@ -167,8 +164,7 @@
               "RelativeToolTip": "urlshortener.client\\Dockerfile",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-08T03:49:57.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:49:57.25Z"
             },
             {
               "$type": "Document",
@@ -180,8 +176,7 @@
               "RelativeToolTip": "urlshortener.client\\nginx.conf",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-08T08:48:24.939Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T08:48:24.939Z"
             },
             {
               "$type": "Document",
@@ -193,8 +188,7 @@
               "RelativeToolTip": "urlshortener.client\\vite.config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-04-09T14:30:50.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-09T14:30:50.494Z"
             },
             {
               "$type": "Document",
@@ -206,8 +200,7 @@
               "RelativeToolTip": "UrlShortenerService\\Controllers\\UrlsController.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAuwEwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T03:48:23.17Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:48:23.17Z"
             },
             {
               "$type": "Document",
@@ -219,8 +212,7 @@
               "RelativeToolTip": "UrlShortenerService\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T03:48:15.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:48:15.745Z"
             },
             {
               "$type": "Document",
@@ -232,8 +224,7 @@
               "RelativeToolTip": "UrlShortenerService\\Model\\ShortUrl.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T07:22:49.879Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T07:22:49.879Z"
             },
             {
               "$type": "Document",
@@ -245,8 +236,7 @@
               "RelativeToolTip": "UrlShortenerService\\Services\\UrlService.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAzwFwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T03:47:37.471Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:47:37.471Z"
             },
             {
               "$type": "Document",
@@ -258,8 +248,7 @@
               "RelativeToolTip": "UrlShortenerService\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-08T03:47:29.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:47:29.369Z"
             },
             {
               "$type": "Document",
@@ -271,8 +260,7 @@
               "RelativeToolTip": "UrlShortenerService\\Dockerfile",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-09T13:42:38.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-09T13:42:38.547Z"
             },
             {
               "$type": "Document",
@@ -284,8 +272,7 @@
               "RelativeToolTip": "UrlShortenerService\\Program.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAkwDUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T03:46:22.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:46:22.543Z"
             },
             {
               "$type": "Document",

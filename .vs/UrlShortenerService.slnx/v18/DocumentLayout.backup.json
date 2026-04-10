@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Learn\\AMD201\\UrlShortenerService\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortener.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|solutionrelative:urlshortener.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortener.client\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|solutionrelative:urlshortener.client\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
       "RelativeMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|solutionrelative:docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortener.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|solutionrelative:urlshortener.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortener.client\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -86,7 +86,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,33 +94,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": ".env",
               "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\.env",
               "RelativeDocumentMoniker": "urlshortener.client\\.env",
-              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\.env*",
-              "RelativeToolTip": "urlshortener.client\\.env*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA3AAAAAAAAAA==",
+              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\.env",
+              "RelativeToolTip": "urlshortener.client\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-04-10T09:12:25.598Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "App.jsx",
               "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\src\\App.jsx",
               "RelativeDocumentMoniker": "urlshortener.client\\src\\App.jsx",
               "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\src\\App.jsx",
               "RelativeToolTip": "urlshortener.client\\src\\App.jsx",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAkwI8AAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2026-04-08T03:49:47.639Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "docker-compose.yml",
               "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml",
               "RelativeDocumentMoniker": "docker-compose.yml",
@@ -133,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ci.yml",
               "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\ci.yml",
               "RelativeDocumentMoniker": "ci.yml",
@@ -146,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "cd.yml",
               "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\cd.yml",
               "RelativeDocumentMoniker": "cd.yml",
