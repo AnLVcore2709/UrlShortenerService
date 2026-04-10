@@ -32,3 +32,7 @@ jobs:
           file: ./urlshortener.client/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/url-shortener-fe:latest
+
+      - name: Trigger Render Deploy
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
