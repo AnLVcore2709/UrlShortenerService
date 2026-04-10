@@ -4,52 +4,47 @@ using UrlShortenerService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Service Registration
+// Register core services: API controllers, Swagger, and Memory Cache
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 
-// Lab 8: Lấy Connection String từ môi trường Docker hoặc appsettings
+// Configure database connection for both Local and Cloud environments
 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
                         ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Lab 8: Chuyển sang dùng Npgsql cho PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseSqlServer(connectionString));
 
+// Register application services using Scoped lifetime
 builder.Services.AddScoped<UrlService>();
 
+// Configure CORS to allow frontend applications (Vue/React) to access the API
 builder.Services.AddCors(options => options.AddPolicy("AllowAll",
-    policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+    policy => policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()));
 
 var app = builder.Build();
 
-// 2. Middleware
+// Configure middleware pipeline: Enable Swagger UI in the request pipeline
 app.UseSwagger();
 app.UseSwaggerUI();
+
+// Enable CORS policy for the application
 app.UseCors("AllowAll");
+
+// Map API controllers to the request pipeline
 app.MapControllers();
 
-// 3. Lab 8: Tự động Migration với Postgres (Retry logic)
+// Apply database migrations automatically at startup (useful for Docker deployment)
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-    for (int i = 0; i < 10; i++)
-    {
-        try
-        {
-            var dbContext = services.GetRequiredService<AppDbContext>();
-            dbContext.Database.Migrate();
-            Console.WriteLine("Database migration successful!");
-            break;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Waiting for Postgres... (Attempt {i + 1}/10)");
-            Thread.Sleep(5000);
-        }
-    }
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    // Ensures database and tables are created if they do not exist
+    dbContext.Database.Migrate();
 }
 
+// Start the application and begin listening for requests
 app.Run();

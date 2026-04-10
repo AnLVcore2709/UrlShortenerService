@@ -1,39 +1,43 @@
+
 version: '3.8'
 
 services:
+  # --- DATABASE LAYER ---
   db:
-    image: postgres:latest
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: url-shortener-db
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=YourStrongPassword123!
-      - POSTGRES_DB=UrlShortenerDb
+      - ACCEPT_EULA=Y # Required: Agrees to the Microsoft End User License Agreement
+      - MSSQL_SA_PASSWORD=YourStrongPassword123! # Sets the System Admin password
     ports:
-      - "5432:5432"
+      - "1433:1433"
     volumes:
-      - postgres_data:/var/lib/postgresql
+          - sql_data:/var/opt/mssql
+    healthcheck:
+      # Crucial: This ensures other services wait until SQL Server is actually ready to receive connections
+      test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/1433"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
+  # --- BACKEND API LAYER ---
   backend:
-    build: 
-      context: ./UrlShortenerService
-      dockerfile: Dockerfile
+    build: ./UrlShortenerService # Tells Docker to use the Dockerfile inside this folder
     container_name: url-shortener-api
     ports:
-      - "7070:8080"
+      - "8080:8080"
     environment:
-      - DB_CONNECTION_STRING=Host=db;Database=UrlShortenerDb;Username=admin;Password=YourStrongPassword123!;Include Error Detail=true
+      # Note: 'Server=db' uses the service name above as the hostname via Docker's internal DNS
+      - DB_CONNECTION_STRING=Server=db;Database=UrlShortenerDB;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True;
     depends_on:
-      - db
+      db:
+        condition: service_healthy # Backend only starts after the DB healthcheck passes
 
+  # --- FRONTEND STATIC LAYER ---
   frontend:
-    build: 
-      context: ./urlshortener.client
-      dockerfile: Dockerfile
+    build: ./urlshortener.client # Compiles the React/Vite/Angular source code
     container_name: url-shortener-web
     ports:
       - "3000:80"
-    depends_on:
-      - backend
-
 volumes:
-  postgres_data:
+  sql_data: # Define a persistent volume so data isn't lost when containers stop

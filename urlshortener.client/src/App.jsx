@@ -1,19 +1,23 @@
 import { useState } from 'react';
 
 function App() {
+    // Define states for input, result, loading, and error messages
     const [urlInput, setUrlInput] = useState('');
     const [shortUrl, setShortUrl] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const BACKEND_URL = "http://localhost:7070";
+    // Backend API base URL (ensure your backend is running on this port)
+    const BACKEND_URL = "http://localhost:8080";
 
+    // Function to handle the creation of a short URL
     const handleCreate = async () => {
         setLoading(true);
         setError('');
         setShortUrl('');
 
         try {
+            // Send POST request to the backend with the original URL
             const response = await fetch(`${BACKEND_URL}/api/urls`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -23,17 +27,22 @@ function App() {
             const data = await response.json();
 
             if (response.ok) {
+                // Success: Update shortUrl state with data from server
                 setShortUrl(data.shortUrl);
             } else {
+                // Handle server-side validation errors or failures
                 setError(data.message || "Something went wrong!");
             }
         } catch {
+            // Handle network issues or server connection errors
             setError("Cannot connect to server!");
         } finally {
-        setLoading(false);
+            // Reset loading state regardless of the outcome
+            setLoading(false);
         }
     };
 
+    // Helper function to copy the result to the system clipboard
     const handleCopy = () => {
         navigator.clipboard.writeText(shortUrl);
         alert("Copied to clipboard!");
@@ -44,6 +53,7 @@ function App() {
             <h1 style={styles.title}> URL Shortener</h1>
 
             <div style={styles.card}>
+                {/* Controlled input field for the long URL */}
                 <input
                     type="text"
                     value={urlInput}
@@ -52,14 +62,15 @@ function App() {
                     style={styles.input}
                 />
 
+                {/* Disable button during processing to prevent multiple requests */}
                 <button onClick={handleCreate} style={styles.button} disabled={loading}>
                     {loading ? "Processing..." : "Shorten"}
                 </button>
 
-                {/* Error UI */}
+                {/* Conditional rendering for Error UI */}
                 {error && <p style={styles.error}>{error}</p>}
 
-                {/* Result UI */}
+                {/* Conditional rendering for Result UI using shortUrl state */}
                 {shortUrl && (
                     <div style={styles.result}>
                         <a href={shortUrl} target="_blank" rel="noreferrer">
@@ -75,7 +86,7 @@ function App() {
     );
 }
 
-//  Simple modern styles
+// Simple modern styles using CSS-in-JS object
 const styles = {
     container: {
         display: 'flex',

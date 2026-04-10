@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h9XjTnuVAdk=",
+  "dgSpecHash": "YQ7s059YVSw=",
   "success": true,
-  "projectFilePath": "C:\\Learn\\AMD201 - tester\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj",
+  "projectFilePath": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Oogur\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Oogur\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
