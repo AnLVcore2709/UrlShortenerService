@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|solutionrelative:urlshortener.client\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortener.client\\urlshortener.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|solutionrelative:urlshortener.client\\urlshortener.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortener.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|solutionrelative:urlshortener.client\\src\\app.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
+      "RelativeMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|solutionrelative:docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortener.client\\urlshortener.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B6797D8D-D056-7820-D9E9-3CDD48CBDF2A}|UrlShortener.Client\\urlshortener.client.esproj|solutionrelative:urlshortener.client\\urlshortener.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD829E8E-F2A5-F46B-24FF-BBE006559AA6}|UrlShortenerService\\UrlShortenerService.csproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortenerservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DD829E8E-F2A5-F46B-24FF-BBE006559AA6}|UrlShortenerService\\UrlShortenerService.csproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortenerservice\\services\\urlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD829E8E-F2A5-F46B-24FF-BBE006559AA6}|UrlShortenerService\\UrlShortenerService.csproj|solutionrelative:urlshortenerservice\\services\\urlservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
-      "RelativeMoniker": "D:0:0:{089100B1-113F-4E66-888A-E83F3999EAFD}|Solution Items{089100B1-113F-4E66-888A-E83F3999EAFD}|solutionrelative:docker-compose.yml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD829E8E-F2A5-F46B-24FF-BBE006559AA6}|UrlShortenerService\\UrlShortenerService.csproj|c:\\learn\\amd201\\urlshortenerservice\\urlshortenerservice\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,11 +86,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.jsx",
+              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\src\\App.jsx",
+              "RelativeDocumentMoniker": "urlshortener.client\\src\\App.jsx",
+              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\src\\App.jsx",
+              "RelativeToolTip": "urlshortener.client\\src\\App.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-04-08T03:49:47.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "urlshortener.client.esproj",
+              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortener.Client\\urlshortener.client.esproj",
+              "RelativeDocumentMoniker": "UrlShortener.Client\\urlshortener.client.esproj",
+              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortener.Client\\urlshortener.client.esproj",
+              "RelativeToolTip": "UrlShortener.Client\\urlshortener.client.esproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-08T05:06:13.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose.yml",
+              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose.yml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-04-08T03:50:17.753Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -100,40 +138,14 @@
               "RelativeDocumentMoniker": "urlshortener.client\\.env",
               "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\.env",
               "RelativeToolTip": "urlshortener.client\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-04-10T09:12:25.598Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.jsx",
-              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\src\\App.jsx",
-              "RelativeDocumentMoniker": "urlshortener.client\\src\\App.jsx",
-              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\urlshortener.client\\src\\App.jsx",
-              "RelativeToolTip": "urlshortener.client\\src\\App.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-04-08T03:49:47.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "UrlsController.cs",
-              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\Controllers\\UrlsController.cs",
-              "RelativeDocumentMoniker": "UrlShortenerService\\Controllers\\UrlsController.cs",
-              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\Controllers\\UrlsController.cs",
-              "RelativeToolTip": "UrlShortenerService\\Controllers\\UrlsController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAiwBwAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T03:48:23.17Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\Program.cs",
               "RelativeDocumentMoniker": "UrlShortenerService\\Program.cs",
@@ -141,25 +153,23 @@
               "RelativeToolTip": "UrlShortenerService\\Program.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T03:46:22.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "urlshortener.client.esproj",
-              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortener.Client\\urlshortener.client.esproj",
-              "RelativeDocumentMoniker": "UrlShortener.Client\\urlshortener.client.esproj",
-              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortener.Client\\urlshortener.client.esproj",
-              "RelativeToolTip": "UrlShortener.Client\\urlshortener.client.esproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-04-08T05:06:13.572Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-08T03:46:22.543Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "UrlsController.cs",
+              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\Controllers\\UrlsController.cs",
+              "RelativeDocumentMoniker": "UrlShortenerService\\Controllers\\UrlsController.cs",
+              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\Controllers\\UrlsController.cs",
+              "RelativeToolTip": "UrlShortenerService\\Controllers\\UrlsController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAiwBwAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T03:48:23.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "UrlService.cs",
               "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\Services\\UrlService.cs",
               "RelativeDocumentMoniker": "UrlShortenerService\\Services\\UrlService.cs",
@@ -168,18 +178,6 @@
               "ViewState": "AgIAAA4AAAAAAAAAAAAQwFwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-08T03:47:37.471Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "docker-compose.yml",
-              "DocumentMoniker": "C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml",
-              "RelativeDocumentMoniker": "docker-compose.yml",
-              "ToolTip": "C:\\Learn\\AMD201\\UrlShortenerService\\docker-compose.yml",
-              "RelativeToolTip": "docker-compose.yml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAIwB4AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2026-04-08T03:50:17.753Z"
             },
             {
               "$type": "Document",
