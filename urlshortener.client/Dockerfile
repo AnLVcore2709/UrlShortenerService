@@ -16,6 +16,9 @@ FROM nginx:stable-alpine
 # Copy build output from the build stage to Nginx default directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Copy custom nginx configuration for proxying
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80 for web traffic access
 EXPOSE 80
 

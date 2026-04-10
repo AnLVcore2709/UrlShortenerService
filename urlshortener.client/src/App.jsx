@@ -17,6 +17,9 @@ function App() {
         setShortUrl('');
 
         try {
+            // Debugging: Logging the full API URL being used
+            console.log("Fetching from:", `${BACKEND_URL}/api/urls`);
+
             // Send POST request to the backend with the original URL
             const response = await fetch(`${BACKEND_URL}/api/urls`,  {
                 method: "POST",
