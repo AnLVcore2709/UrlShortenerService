@@ -21,7 +21,7 @@ function App() {
             const response = await fetch(`${BACKEND_URL}/api/urls`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ originalUrl: urlInput })
+                body: JSON.stringify({ url: urlInput })
             });
 
             const data = await response.json();
