@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using UrlShortenerService.Controllers;
 using UrlShortenerService.Data;
+using UrlShortenerService.Models;
 using UrlShortenerService.Services;
-using Microsoft.Extensions.Caching.Memory;
 using Xunit;
 
 namespace UrlShortener.Tests
@@ -74,6 +75,67 @@ namespace UrlShortener.Tests
 
             // Assert: Ensure the response is a 400 Bad Request
             Assert.IsType<BadRequestObjectResult>(result);
+        }
+        [Fact]
+        public async Task GetOriginalUrl_ShouldSetCacheAfterFirstCall()
+        {
+            // Arrange
+            var db = GetDbContext();
+            var cache = new MemoryCache(new MemoryCacheOptions());
+            var service = new UrlService(db, cache);
+
+            var code = "cache1";
+            var longUrl = "https://openai.com";
+            db.ShortUrls.Add(new ShortUrl { ShortCode = code, OriginalUrl = longUrl });
+            await db.SaveChangesAsync();
+
+
+            await service.GetOriginalUrl(code);
+
+            var isExistsInCache = cache.TryGetValue(code, out string cachedUrl);
+            Assert.True(isExistsInCache);
+            Assert.Equal(longUrl, cachedUrl);
+        }
+        [Fact]
+        public async Task IncrementClickCount_ShouldIncreaseDatabaseValue()
+        {
+            // Arrange
+            var db = GetDbContext();
+            var cache = new MemoryCache(new MemoryCacheOptions());
+            var service = new UrlService(db, cache);
+
+            var code = "click1";
+            var entry = new ShortUrl { ShortCode = code, OriginalUrl = "https://test.com", ClickCount = 0 };
+            db.ShortUrls.Add(entry);
+            await db.SaveChangesAsync();
+
+            // Act
+            await service.IncrementClickCount(code);
+
+            // Assert
+            var updatedEntry = await db.ShortUrls.FirstOrDefaultAsync(u => u.ShortCode == code);
+            Assert.Equal(1, updatedEntry.ClickCount);
+        }
+        [Fact]
+        public async Task RedirectTo_ValidCode_ShouldReturn302Redirect()
+        {
+            // Arrange
+            var db = GetDbContext();
+            var cache = new MemoryCache(new MemoryCacheOptions());
+            var service = new UrlService(db, cache);
+            var controller = new UrlsController(db, service);
+
+            var code = "test302";
+            var longUrl = "https://facebook.com";
+            db.ShortUrls.Add(new ShortUrl { ShortCode = code, OriginalUrl = longUrl });
+            await db.SaveChangesAsync();
+
+            // Act
+            var result = await controller.RedirectTo(code);
+
+            // Assert
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal(longUrl, redirectResult.Url);
         }
     }
 }

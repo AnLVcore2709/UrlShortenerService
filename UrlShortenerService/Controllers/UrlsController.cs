@@ -22,18 +22,19 @@ namespace UrlShortenerService.Controllers
         [HttpPost("api/urls")]
         public async Task<IActionResult> Shorten([FromBody] UrlRequest model)
         {
-            // Validate URL format (only HTTP and HTTPS are allowed)
             if (!Uri.TryCreate(model.Url, UriKind.Absolute, out var uriResult)
-            || (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+                || (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
             {
                 return BadRequest("Invalid URL. Only HTTP and HTTPS are supported.");
             }
 
-            // Generate short code and build the complete short URL string
             var code = await _urlService.CreateShortUrl(model.Url);
-            var shortUrl = $"{Request.Scheme}://{Request.Host}/{code}";
 
-            // Return 201 Created status with the location of the new resource
+            var baseUrl = Environment.GetEnvironmentVariable("BASE_URL")
+                          ?? $"{Request.Scheme}://{Request.Host}";
+
+            var shortUrl = $"{baseUrl}/{code}";
+
             return CreatedAtAction(nameof(GetUrlInfo), new { code = code }, new { shortUrl, code });
         }
 
