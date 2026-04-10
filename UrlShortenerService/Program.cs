@@ -46,8 +46,16 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // Ensures database and tables are created if they do not exist
-    dbContext.Database.Migrate();
+    try 
+    {
+        // Applies any pending migrations
+        dbContext.Database.Migrate();
+    }
+    catch (Exception)
+    {
+        // If migration fails (e.g. table already exists), ensure DB is created
+        dbContext.Database.EnsureCreated();
+    }
 }
 
 // Start the application and begin listening for requests

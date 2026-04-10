@@ -36,9 +36,10 @@ function App() {
                 // Handle server-side validation errors or failures
                 setError(data.message || "Something went wrong!");
             }
-        } catch {
+        } catch (err) {
             // Handle network issues or server connection errors
-            setError("Cannot connect to server!");
+            setError(`Cannot connect to server at ${BACKEND_URL || window.location.origin}/api/urls`);
+            console.error(err);
         } finally {
             // Reset loading state regardless of the outcome
             setLoading(false);

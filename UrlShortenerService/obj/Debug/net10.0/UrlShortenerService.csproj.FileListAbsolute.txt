@@ -325,7 +325,6 @@ C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\static
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\staticwebassets.development.json
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\swae.build.ex.cache
-C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\UrlShort.2A13181E.Up2Date
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\UrlShortenerService.dll
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\refint\UrlShortenerService.dll
