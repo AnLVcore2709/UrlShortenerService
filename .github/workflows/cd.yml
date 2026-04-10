@@ -23,7 +23,7 @@ jobs:
           context: ./UrlShortenerService
           file: ./UrlShortenerService/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/url-shortener-be:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/url-shortener-be:latest
 
       - name: Build and Push Frontend Image
         uses: docker/build-push-action@v5
@@ -31,4 +31,4 @@ jobs:
           context: ./urlshortener.client
           file: ./urlshortener.client/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/url-shortener-fe:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/url-shortener-fe:latest
