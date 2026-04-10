@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using UrlShortenerService.Data;
 using UrlShortenerService.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,10 +33,13 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-// Enable CORS policy for the application
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 app.UseCors("AllowAll");
 
-// Map API controllers to the request pipeline
 app.MapControllers();
 
 // Apply database migrations automatically at startup (useful for Docker deployment)

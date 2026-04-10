@@ -8,7 +8,7 @@ function App() {
     const [error, setError] = useState('');
 
     // Backend API base URL (ensure your backend is running on this port)
-    const BACKEND_URL = "http://localhost:8080";
+    const BACKEND_URL = import.meta.env.VITE_API_URL;
 
     // Function to handle the creation of a short URL
     const handleCreate = async () => {
