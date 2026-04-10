@@ -11,11 +11,13 @@ namespace UrlShortenerService.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UrlService _urlService;
+        private readonly IConfiguration _configuration;
 
-        public UrlsController(AppDbContext context, UrlService urlService)
+        public UrlsController(AppDbContext context, UrlService urlService, IConfiguration configuration)
         {
             _context = context;
             _urlService = urlService;
+            _configuration = configuration;
         }
 
         // Create a short URL via POST request
@@ -30,7 +32,9 @@ namespace UrlShortenerService.Controllers
 
             var code = await _urlService.CreateShortUrl(model.Url);
 
+            // Retrieve the domain from environment variable or configuration, fallback to Request host
             var baseUrl = Environment.GetEnvironmentVariable("BASE_URL")
+                          ?? _configuration["AppSettings:BaseUrl"]
                           ?? $"{Request.Scheme}://{Request.Host}";
 
             var shortUrl = $"{baseUrl}/{code}";

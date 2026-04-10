@@ -7,8 +7,8 @@ function App() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    // Backend API base URL (ensure your backend is running on this port)
-    const BACKEND_URL = "";
+    // Backend API base URL (uses env variable or defaults to empty string for proxy)
+    const BACKEND_URL = import.meta.env.VITE_API_URL || "";
 
     // Function to handle the creation of a short URL
     const handleCreate = async () => {
@@ -18,7 +18,7 @@ function App() {
 
         try {
             // Send POST request to the backend with the original URL
-            const response = await fetch(`/api/urls`,  {
+            const response = await fetch(`${BACKEND_URL}/api/urls`,  {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ url: urlInput })
