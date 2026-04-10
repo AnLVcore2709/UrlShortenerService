@@ -8,6 +8,8 @@ RUN npm install
 
 # Copy source code and build the production-ready application
 COPY . .
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 RUN npm run build
 
 # Stage 2: Serve the compiled static files with Nginx
