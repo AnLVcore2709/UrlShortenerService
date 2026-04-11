@@ -1,43 +1,44 @@
-
 version: '3.8'
 
 services:
-  # --- DATABASE LAYER ---
+  # --- DATABASE LAYER (SQL SERVER) ---
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: url-shortener-db
     environment:
-      - ACCEPT_EULA=Y # Required: Agrees to the Microsoft End User License Agreement
-      - MSSQL_SA_PASSWORD=YourStrongPassword123! # Sets the System Admin password
+      - ACCEPT_EULA=Y # Accept the Microsoft SQL Server License Agreement
+      - MSSQL_SA_PASSWORD=YourStrongPassword123! # System Administrator password
     ports:
       - "1433:1433"
     volumes:
-          - sql_data:/var/opt/mssql
+      - sql_data:/var/opt/mssql # Persistent storage for database files
     healthcheck:
-      # Crucial: This ensures other services wait until SQL Server is actually ready to receive connections
+      # Ensure the database is ready for connections before dependent services start
       test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/1433"]
       interval: 10s
       timeout: 5s
       retries: 10
 
-  # --- BACKEND API LAYER ---
+  # --- BACKEND API LAYER (.NET CORE) ---
   backend:
-    build: ./UrlShortenerService # Tells Docker to use the Dockerfile inside this folder
+    build: ./UrlShortenerService # Build context for the backend service
     container_name: url-shortener-api
     ports:
       - "8080:8080"
     environment:
-      # Note: 'Server=db' uses the service name above as the hostname via Docker's internal DNS
+      # Connection string using 'db' as the hostname (Docker internal DNS)
       - DB_CONNECTION_STRING=Server=db;Database=UrlShortenerDB;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True;
     depends_on:
       db:
-        condition: service_healthy # Backend only starts after the DB healthcheck passes
+        condition: service_healthy # Wait for database healthcheck to pass
 
-  # --- FRONTEND STATIC LAYER ---
+  # --- FRONTEND UI LAYER (REACT/NGINX) ---
   frontend:
-    build: ./urlshortener.client # Compiles the React/Vite/Angular source code
+    build: ./urlshortener.client # Build context for the frontend client
     container_name: url-shortener-web
     ports:
-      - "3000:80"
+      - "3000:80" # Maps host port 3000 to container port 80
+
 volumes:
-  sql_data: # Define a persistent volume so data isn't lost when containers stop
+  # Named volume for persistent database storage across container restarts
+  sql_data:

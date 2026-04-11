@@ -1,24 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace UrlShortenerService.Models
 {
+    // Entity representing a shortened link in the system.
     public class ShortUrl
     {
-        // Primary key: Unique identifier for each record in the database
+        // Primary key: Unique identifier for each database record.
         public int Id { get; set; }
 
-        // Original long URL (required property)
+        // The original long URL provided by the user.
         [Required]
         public string OriginalUrl { get; set; } = string.Empty;
 
-        // Generated short code which must be unique for redirection
+        // Unique code used for redirection and identification.
         [Required]
         public string ShortCode { get; set; } = string.Empty;
 
-        // Timestamp when the short URL was created in UTC format
+        // Timestamp when the link was created (defaults to UTC now).
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // Analytics: Track how many times the short URL has been accessed
+        // Counter to track how many times the short URL has been accessed.
         public int ClickCount { get; set; } = 0;
     }
 }

@@ -5,11 +5,11 @@ using UrlShortenerService.Models;
 
 namespace UrlShortenerService.Services
 {
+    // Main service handling URL shortening logic, cache management, and analytics.
     public class UrlService
     {
         private readonly AppDbContext _context;
-        // Inject in-memory cache for performance optimization
-
+        // Use in-memory cache to optimize performance and reduce database load.
         private readonly IMemoryCache _cache;
 
         public UrlService(AppDbContext context, IMemoryCache cache)
@@ -18,7 +18,7 @@ namespace UrlShortenerService.Services
             _cache = cache;
         }
 
-        // Generate a random 6-character alphanumeric short code
+        // Generate a random 6-character alphanumeric code for the short URL.
         public string GenerateCode()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -26,14 +26,14 @@ namespace UrlShortenerService.Services
                 .Select(s => s[Random.Shared.Next(s.Length)]).ToArray());
         }
 
-        // Retrieve original URL by short code
-        // Flow: Check Cache -> If not found, query Database -> Store in Cache
+        // Retrieve original URL using the short code.
+        // Flow: Check Cache -> If miss, query Database -> Store in Cache for future use.
         public async Task<string?> GetOriginalUrl(string code)
         {
-            // 1. Check cache first before hitting the database
-            if (!_cache.TryGetValue(code, out string originalUrl))
+            // 1. Try to fetch from cache first to improve response time.
+            if (!_cache.TryGetValue(code, out string? originalUrl))
             {
-                // 2. Cache miss -> Query database for the mapping
+                // 2. Cache miss: Query the database for the mapping.
                 var urlEntry = await _context.ShortUrls
                     .FirstOrDefaultAsync(u => u.ShortCode == code);
 
@@ -41,7 +41,7 @@ namespace UrlShortenerService.Services
 
                 originalUrl = urlEntry.OriginalUrl;
 
-                // 3. Store result in cache with a sliding expiration for future requests
+                // 3. Update cache with a 60-minute sliding expiration.
                 var cacheOptions = new MemoryCacheEntryOptions()
                     .SetSlidingExpiration(TimeSpan.FromMinutes(60));
 
@@ -51,12 +51,12 @@ namespace UrlShortenerService.Services
             return originalUrl;
         }
 
-        // Create a new short URL entry and save it to the database
+        // Create a new shortened URL entry and persist it to the database.
         public async Task<string> CreateShortUrl(string originalUrl)
         {
             string code;
 
-            // Ensure generated code is unique in the database (Collision handling)
+            // Loop to ensure the generated code is unique (handling collisions).
             do
             {
                 code = GenerateCode();
@@ -69,23 +69,24 @@ namespace UrlShortenerService.Services
                 ShortCode = code
             };
 
-            // Add new entity and persist changes asynchronously
+            // Add the new entity and save changes.
             _context.ShortUrls.Add(urlEntry);
             await _context.SaveChangesAsync();
 
             return code;
         }
-        // Increment click count when a short URL is accessed
+
+        // Increment the access count for a specific short code.
         public async Task IncrementClickCount(string code)
         {
-            // This logic can be executed as a background task to optimize response time
+            // Find the record by its short code identifier.
             var urlEntry = await _context.ShortUrls
                 .FirstOrDefaultAsync(u => u.ShortCode == code);
 
             if (urlEntry != null)
             {
                 urlEntry.ClickCount++;
-                // Commit the update to the database
+                // Commit the updated click count to the database.
                 await _context.SaveChangesAsync();
             }
         }

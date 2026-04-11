@@ -1,25 +1,26 @@
-# Stage 1: Build stage using the .NET SDK image
+# Stage 1: Compile the application using the .NET SDK
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /app
 
-# Copy csproj and restore dependencies to leverage Docker layer caching
+# Copy project file and restore NuGet dependencies
+# Separating this step improves caching efficiency
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy the remaining source code and build the application in Release mode
+# Copy all source files and publish the release build
 COPY . .
 RUN dotnet publish -c Release -o out
 
-# Stage 2: Runtime stage using a smaller ASP.NET runtime image
+# Stage 2: Create the final runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 
-# Copy the compiled output from the build stage to the runtime image
+# Copy only the compiled output from the build stage to keep the image lightweight
 COPY --from=build /app/out .
 
-# Configure the environment variable for the application port
+# Configure the container to listen on port 8080 by default
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-# Define the entry point for the container to start the service
+# Specify the command to run the application
 ENTRYPOINT ["dotnet", "UrlShortenerService.dll"]
