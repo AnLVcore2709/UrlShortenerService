@@ -8,7 +8,7 @@
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "BASE_URL": "https://url-shortener-link.onrender.com"
+        "BASE_URL": "https://url-shortener-link-f04l.onrender.com"
       }
     },
     "https": {
@@ -18,7 +18,7 @@
       "applicationUrl": "https://localhost:7070;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "BASE_URL": "https://url-shortener-link.onrender.com"
+        "BASE_URL": "https://url-shortener-link-f04l.onrender.com"
       }
     }
   }
