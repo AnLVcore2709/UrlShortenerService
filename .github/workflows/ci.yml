@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./UrlShortenerService 
+        working-directory: ./UrlShortener.Tests
     steps:
       - uses: actions/checkout@v4
 
