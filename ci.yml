@@ -1,6 +1,5 @@
 name: URL Shortener CI
 
-# Trigger the workflow on Pull Requests to develop or main branches
 on:
   pull_request:
     branches: [ "develop", "main" ]
@@ -10,21 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./UrlShortener.Tests # Base directory for .NET commands
+         working-directory: ./UrlShortener.Tests
     steps:
-      - name: Checkout Source Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup .NET SDK
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0.x # Target .NET version
+          dotnet-version: 10.0.x
 
-      - name: Restore NuGet Dependencies
+      - name: Restore dependencies
         run: dotnet restore
 
-      - name: Build Application
-        run: dotnet build --no-restore # Skip restore as it was done in the previous step
+      - name: Build
+        run: dotnet build --no-restore
 
-      - name: Execute Unit Tests
-        run: dotnet test --no-build --verbosity normal # Run tests without rebuilding
+      - name: Run Tests
+        run: dotnet test --no-build --verbosity normal

@@ -331,4 +331,3 @@ C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\refint
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\UrlShortenerService.pdb
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\UrlShortenerService.genruntimeconfig.cache
 C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\ref\UrlShortenerService.dll
-C:\Learn\AMD201\UrlShortenerService\UrlShortenerService\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
