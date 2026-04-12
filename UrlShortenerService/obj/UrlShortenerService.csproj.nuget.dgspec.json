@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Learn\\AMD201 - tester\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj": {}
+    "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj": {}
   },
   "projects": {
-    "C:\\Learn\\AMD201 - tester\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj": {
+    "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Learn\\AMD201 - tester\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj",
+        "projectUniqueName": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj",
         "projectName": "UrlShortenerService",
-        "projectPath": "C:\\Learn\\AMD201 - tester\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj",
+        "projectPath": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\UrlShortenerService.csproj",
         "packagesPath": "C:\\Users\\Oogur\\.nuget\\packages\\",
-        "outputPath": "C:\\Learn\\AMD201 - tester\\UrlShortenerService\\UrlShortenerService\\obj\\",
+        "outputPath": "C:\\Learn\\AMD201\\UrlShortenerService\\UrlShortenerService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

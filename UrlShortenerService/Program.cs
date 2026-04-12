@@ -1,55 +1,64 @@
 using Microsoft.EntityFrameworkCore;
 using UrlShortenerService.Data;
 using UrlShortenerService.Services;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Service Registration
+// 1. Register core services: API Controllers, Swagger, and Memory Cache
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 
-// Lab 8: Lấy Connection String từ môi trường Docker hoặc appsettings
+// 2. Configure database connection (Prefer DB_CONNECTION_STRING environment variable for Docker/Cloud)
 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
                         ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Lab 8: Chuyển sang dùng Npgsql cho PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseSqlServer(connectionString));
 
+// 3. Register custom application services (Dependency Injection)
 builder.Services.AddScoped<UrlService>();
 
+// 4. Configure CORS to allow frontend applications (Vue, React, etc.) to access the API
 builder.Services.AddCors(options => options.AddPolicy("AllowAll",
-    policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+    policy => policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()));
 
 var app = builder.Build();
 
-// 2. Middleware
+// 5. Configure HTTP Request Pipeline (Middleware)
+// Enable Swagger UI for API testing
 app.UseSwagger();
 app.UseSwaggerUI();
+
+// Handle forwarded headers when running behind a proxy (e.g., Nginx, Render)
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 app.UseCors("AllowAll");
+
 app.MapControllers();
 
-// 3. Lab 8: Tự động Migration với Postgres (Retry logic)
+// 6. Automatically apply pending migrations at startup
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-    for (int i = 0; i < 10; i++)
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    try 
     {
-        try
-        {
-            var dbContext = services.GetRequiredService<AppDbContext>();
-            dbContext.Database.Migrate();
-            Console.WriteLine("Database migration successful!");
-            break;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Waiting for Postgres... (Attempt {i + 1}/10)");
-            Thread.Sleep(5000);
-        }
+        // Check and apply any missing schema changes
+        dbContext.Database.Migrate();
+    }
+    catch (Exception)
+    {
+        // If migration fails, ensure the database is initialized
+        dbContext.Database.EnsureCreated();
     }
 }
 
+// Start the application and begin listening for requests
 app.Run();

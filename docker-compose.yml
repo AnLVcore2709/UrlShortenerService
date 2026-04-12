@@ -1,39 +1,44 @@
 version: '3.8'
 
 services:
+  # --- DATABASE LAYER (SQL SERVER) ---
   db:
-    image: postgres:latest
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: url-shortener-db
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=YourStrongPassword123!
-      - POSTGRES_DB=UrlShortenerDb
+      - ACCEPT_EULA=Y # Accept the Microsoft SQL Server License Agreement
+      - MSSQL_SA_PASSWORD=YourStrongPassword123! # System Administrator password
     ports:
-      - "5432:5432"
+      - "1433:1433"
     volumes:
-      - postgres_data:/var/lib/postgresql
+      - sql_data:/var/opt/mssql # Persistent storage for database files
+    healthcheck:
+      # Ensure the database is ready for connections before dependent services start
+      test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/1433"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
+  # --- BACKEND API LAYER (.NET CORE) ---
   backend:
-    build: 
-      context: ./UrlShortenerService
-      dockerfile: Dockerfile
+    build: ./UrlShortenerService # Build context for the backend service
     container_name: url-shortener-api
     ports:
-      - "7070:8080"
+      - "8080:8080"
     environment:
-      - DB_CONNECTION_STRING=Host=db;Database=UrlShortenerDb;Username=admin;Password=YourStrongPassword123!;Include Error Detail=true
+      # Connection string using 'db' as the hostname (Docker internal DNS)
+      - DB_CONNECTION_STRING=Server=db;Database=UrlShortenerDB;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True;
     depends_on:
-      - db
+      db:
+        condition: service_healthy # Wait for database healthcheck to pass
 
+  # --- FRONTEND UI LAYER (REACT/NGINX) ---
   frontend:
-    build: 
-      context: ./urlshortener.client
-      dockerfile: Dockerfile
+    build: ./urlshortener.client # Build context for the frontend client
     container_name: url-shortener-web
     ports:
-      - "3000:80"
-    depends_on:
-      - backend
+      - "3000:80" # Maps host port 3000 to container port 80
 
 volumes:
-  postgres_data:
+  # Named volume for persistent database storage across container restarts
+  sql_data:

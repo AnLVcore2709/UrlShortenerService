@@ -1,20 +1,29 @@
 import { useState } from 'react';
 
+// Main React component for the URL Shortener frontend application.
 function App() {
+    // State hooks to manage user input, API responses, UI loading states, and error alerts.
     const [urlInput, setUrlInput] = useState('');
     const [shortUrl, setShortUrl] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const BACKEND_URL = "http://localhost:7070";
+    // Configure the Backend API base URL. 
+    // Uses VITE_API_URL from .env file during production, or an empty string for development proxying.
+    const BACKEND_URL = import.meta.env.VITE_API_URL || "";
 
+    // Handler to process URL shortening by calling the backend API.
     const handleCreate = async () => {
-        setLoading(true);
-        setError('');
-        setShortUrl('');
+        setLoading(true); // Indicate processing has started
+        setError('');     // Clear previous errors
+        setShortUrl('');  // Reset previous results
 
         try {
-            const response = await fetch(`${BACKEND_URL}/api/urls`, {
+            // Log the endpoint for debugging connectivity issues.
+            console.log("Fetching from:", `${BACKEND_URL}/api/urls`);
+
+            // Execute POST request with the long URL in the JSON body.
+            const response = await fetch(`${BACKEND_URL}/api/urls`,  {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ url: urlInput })
@@ -23,17 +32,23 @@ function App() {
             const data = await response.json();
 
             if (response.ok) {
+                // Update state with the shortened URL returned by the server.
                 setShortUrl(data.shortUrl);
             } else {
+                // Capture and display server-side validation or logic errors.
                 setError(data.message || "Something went wrong!");
             }
-        } catch {
-            setError("Cannot connect to server!");
+        } catch (err) {
+            // Handle network failures or unreachable server.
+            setError(`Cannot connect to server at ${BACKEND_URL || window.location.origin}/api/urls`);
+            console.error(err);
         } finally {
-        setLoading(false);
+            // Ensure loading state is turned off regardless of success or failure.
+            setLoading(false);
         }
     };
 
+    // Helper function to copy the generated short URL to the device's clipboard.
     const handleCopy = () => {
         navigator.clipboard.writeText(shortUrl);
         alert("Copied to clipboard!");
@@ -44,6 +59,7 @@ function App() {
             <h1 style={styles.title}> URL Shortener</h1>
 
             <div style={styles.card}>
+                {/* Controlled Input: Updates urlInput state as the user types. */}
                 <input
                     type="text"
                     value={urlInput}
@@ -52,14 +68,15 @@ function App() {
                     style={styles.input}
                 />
 
+                {/* Submit Button: Triggers handleCreate and disables itself during loading. */}
                 <button onClick={handleCreate} style={styles.button} disabled={loading}>
                     {loading ? "Processing..." : "Shorten"}
                 </button>
 
-                {/* Error UI */}
+                {/* Error Banner: Only displayed if the error state is not empty. */}
                 {error && <p style={styles.error}>{error}</p>}
 
-                {/* Result UI */}
+                {/* Result Section: Displayed only after a successful short URL generation. */}
                 {shortUrl && (
                     <div style={styles.result}>
                         <a href={shortUrl} target="_blank" rel="noreferrer">
@@ -75,7 +92,7 @@ function App() {
     );
 }
 
-//  Simple modern styles
+// Inline CSS-in-JS object to define a clean, centered, and modern UI layout.
 const styles = {
     container: {
         display: 'flex',

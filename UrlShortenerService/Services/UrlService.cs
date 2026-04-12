@@ -5,11 +5,12 @@ using UrlShortenerService.Models;
 
 namespace UrlShortenerService.Services
 {
+    // Main service handling URL shortening logic, cache management, and analytics.
     public class UrlService
     {
         private readonly AppDbContext _context;
-        private readonly IMemoryCache _cache; // Add cache to the service
-        private readonly Random _random = new();
+        // Use in-memory cache to optimize performance and reduce database load.
+        private readonly IMemoryCache _cache;
 
         public UrlService(AppDbContext context, IMemoryCache cache)
         {
@@ -17,6 +18,7 @@ namespace UrlShortenerService.Services
             _cache = cache;
         }
 
+        // Generate a random 6-character alphanumeric code for the short URL.
         public string GenerateCode()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -24,19 +26,22 @@ namespace UrlShortenerService.Services
                 .Select(s => s[Random.Shared.Next(s.Length)]).ToArray());
         }
 
-        // URL retrieval flow: Check Cache first -> If not found, query Database
+        // Retrieve original URL using the short code.
+        // Flow: Check Cache -> If miss, query Database -> Store in Cache for future use.
         public async Task<string?> GetOriginalUrl(string code)
         {
-            // 1. Check cache first
-            if (!_cache.TryGetValue(code, out string originalUrl))
+            // 1. Try to fetch from cache first to improve response time.
+            if (!_cache.TryGetValue(code, out string? originalUrl))
             {
-                // 2. Cache miss -> query database
-                var urlEntry = await _context.ShortUrls.FirstOrDefaultAsync(u => u.ShortCode == code);
+                // 2. Cache miss: Query the database for the mapping.
+                var urlEntry = await _context.ShortUrls
+                    .FirstOrDefaultAsync(u => u.ShortCode == code);
+
                 if (urlEntry == null) return null;
 
                 originalUrl = urlEntry.OriginalUrl;
 
-                // 3. Store result in cache for future requests
+                // 3. Update cache with a 60-minute sliding expiration.
                 var cacheOptions = new MemoryCacheEntryOptions()
                     .SetSlidingExpiration(TimeSpan.FromMinutes(60));
 
@@ -46,11 +51,12 @@ namespace UrlShortenerService.Services
             return originalUrl;
         }
 
+        // Create a new shortened URL entry and persist it to the database.
         public async Task<string> CreateShortUrl(string originalUrl)
         {
             string code;
 
-            // Ensure generated code is unique in the database
+            // Loop to ensure the generated code is unique (handling collisions).
             do
             {
                 code = GenerateCode();
@@ -63,20 +69,24 @@ namespace UrlShortenerService.Services
                 ShortCode = code
             };
 
+            // Add the new entity and save changes.
             _context.ShortUrls.Add(urlEntry);
             await _context.SaveChangesAsync();
 
             return code;
         }
 
+        // Increment the access count for a specific short code.
         public async Task IncrementClickCount(string code)
         {
-            // Run this logic as a background task to avoid slowing down user redirect
-            var urlEntry = await _context.ShortUrls.FirstOrDefaultAsync(u => u.ShortCode == code);
+            // Find the record by its short code identifier.
+            var urlEntry = await _context.ShortUrls
+                .FirstOrDefaultAsync(u => u.ShortCode == code);
 
             if (urlEntry != null)
             {
                 urlEntry.ClickCount++;
+                // Commit the updated click count to the database.
                 await _context.SaveChangesAsync();
             }
         }
